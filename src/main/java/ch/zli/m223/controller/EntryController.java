@@ -44,11 +44,12 @@ public class EntryController {
       entryService.deleteEntry(id);
       return Response.status(Response.Status.ACCEPTED).build();}
 
-  @PATCH
-  @Produces(MediaType.APPLICATION_JSON)
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Operation(summary = "Updates an entry.", description = "Updates the entry. The id is read from the provided Entry object.")
-  public Entry update(Entry updatedEntry) {
-    return entryService.updateEntry(updatedEntry);
-  }
+    @PATCH
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Updates an entry.", description = "Updates the entry with the given id.")
+    public Entry update(Entry updatedEntry) {
+      updatedEntry.setId(updatedEntry.getId());
+      return entryService.updateEntry(updatedEntry);
+    }
 }
